@@ -17,26 +17,53 @@ export default class CartSummary extends PureComponent {
  
     //TODO: componentWillMount
 
-    componentWillMount() {
-        this.recalculate(this.props);
-    }
+    // componentWillMount() {
+    //     this.recalculate(this.props);
+    // }
 
     //TODO: componentWillReceiveProps, recalculate 
 
     // update cycle method
     // called on every parent component render on update cycle
-    componentWillReceiveProps(nextProps) {
-        console.log('CartSummary componentWillReceiveProps');
-        console.log('nextProps', nextProps);
-        console.log('current props', this.props);
+    // componentWillReceiveProps(nextProps) {
+    //     console.log('CartSummary componentWillReceiveProps');
+    //     console.log('nextProps', nextProps);
+    //     console.log('current props', this.props);
 
-        if (this.props.count !== nextProps.count || 
-            this.props.amount !== nextProps.amount) {
-                console.log('recalculate discount now');
-                this.recalculate(nextProps)
-            }
+    //     if (this.props.count !== nextProps.count || 
+    //         this.props.amount !== nextProps.amount) {
+    //             console.log('recalculate discount now');
+    //             this.recalculate(nextProps)
+    //         }
 
+    // }
+
+    static getDerivedStateFromProps(props, state) {
+        console.log('getDerivedStateFromProps called');
+        console.log('props', props);
+        console.log('state ', state);
+
+        let discount = 0;
+
+        if (props.count >= 10) {
+            discount = 20;
+        } else if (props.count >= 5) {
+            discount = 10;
+        }
+
+        let grandTotal = props.amount - (props.amount * discount / 100);
+
+        // this.setState({
+        //     discount, 
+        //     grandTotal
+        // })
+
+        return {
+            discount, 
+            grandTotal
+        }
     }
+
  
     //TODO: shouldComponentUpdate
 
@@ -57,7 +84,11 @@ export default class CartSummary extends PureComponent {
         })
     }
      
-
+    check = () => {
+        this.setState({
+            flag: true
+        })
+    }
 
     
     render() {
@@ -70,6 +101,8 @@ export default class CartSummary extends PureComponent {
 
             <p> Discount: {this.state.discount} %</p>
             <p> Grand Total: {this.state.grandTotal} </p>
+
+            <button onClick={this.check}>Check</button>
             </div>
         )
     }

@@ -12,7 +12,7 @@ export default class Cart extends PureComponent {
 
         this.state = {
             items: [ 
-            			{id: 1, name: 'P1', price: 100, qty: 5}
+            	  {id: 1, name: 'P1', price: 100, qty: 5}
             	   ],
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty
@@ -109,9 +109,9 @@ export default class Cart extends PureComponent {
         this.recalculate(this.state.items);
     }
     
-    
     render() {
         console.log("Cart render")
+         
         return (
             <div> 
             <h2>Cart</h2>
@@ -129,7 +129,6 @@ export default class Cart extends PureComponent {
                 Refresh
             </button>
             
-
             <CartList  items={this.state.items}  
                        removeItem={this.removeItem}
             />

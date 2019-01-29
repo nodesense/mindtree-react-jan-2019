@@ -4,6 +4,8 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import ErrorBoundary from './components/ErrorBoundary';
+
 import Cart from './cart/components/Cart';
 
 
@@ -23,7 +25,9 @@ class App extends React.Component {
                 */}
                 <Header title="Product App" />
 
-                <Cart />
+                <ErrorBoundary>
+                    <Cart />
+                </ErrorBoundary>
 
                 <Home startValue={0} />
 
