@@ -1,7 +1,8 @@
 // Counter.js
 
 import React, { Component } from 'react';
- 
+import {withRouter} from 'react-router-dom';
+
  
 function funcSetState(state, props) {
     console.log('funcSetState called', state)
@@ -152,6 +153,10 @@ class Counter extends Component {
                     Decr - 2 twice
                 </button>
 
+                <button onClick={ () => this.props.history.push("/cart") }>
+                    Cart from Counter
+            </button>
+
 
 
             </div>
@@ -159,4 +164,6 @@ class Counter extends Component {
     }
 }
 
-export default Counter;
+// export default Counter;
+
+export default withRouter(Counter);

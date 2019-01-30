@@ -5,6 +5,8 @@ import Address from './Address';
 import PropTypes from 'prop-types';
 import PreferenceContext from '../PreferenceContext';
 
+import {withRouter} from 'react-router-dom';
+
 
 // functional component
 // local to Footer.js, private
@@ -30,6 +32,7 @@ const notice = <p>Updated  timing refer here....</p>
 
 // ES6 function
 const Footer = (props, context) => {
+    console.log('Footer render ', props);
     // deconstruct
     let {year, company, 
         address, countries } = props;
@@ -54,6 +57,11 @@ const Footer = (props, context) => {
             <p> Context Theme {context.theme}</p>
 
             <p> Context Lang {context.lang}</p>
+
+            <button onClick={ () => this.props.history.push("/cart") }>
+                    Cart
+            </button>
+
         </div>
     )
 }
@@ -77,4 +85,7 @@ Footer.defaultProps = {
 
 Footer.contextType = PreferenceContext;
 
-export default Footer;
+// export default Footer;
+
+
+export default withRouter(Footer);

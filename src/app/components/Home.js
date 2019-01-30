@@ -12,6 +12,11 @@ class Home extends Component {
             <div>
                 <h2>Home</h2>
                 <Counter  startValue={this.props.startValue} />
+
+                <button onClick={ () => this.props.history.push("/cart") }>
+                    Cart
+                </button>
+                
             </div>
         );
     }
