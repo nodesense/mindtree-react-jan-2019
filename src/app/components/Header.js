@@ -73,6 +73,26 @@ function Header(props) {
             </NavLink>
 
 
+
+            <NavLink to="/counter"
+                className="button"
+                activeClassName="success">
+                 Counter
+            </NavLink>
+
+            <NavLink to="/func-counter"
+                className="button"
+                activeClassName="success">
+                Func Counter
+            </NavLink>
+
+            <NavLink to="/login"
+                className="button"
+                activeClassName="success">
+                 Login
+            </NavLink>
+
+
             <hr />
         </div>
     )

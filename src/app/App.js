@@ -19,6 +19,15 @@ import Contact from './components/Contact';
 import About from './components/About';
 import NotFound from './components/NotFound';
 
+
+import Login from './components/Login';
+
+import AuthRoute from './components/AuthRoute';
+
+import ReduxCounter from './components/ReduxCounter';
+import FuncCounter from './containers/FuncCounter';
+import ProductList from './containers/ProductList';
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -73,13 +82,33 @@ class App extends React.Component {
 
                     <Route path="/contact/:country" 
                           component={Contact} />
-
+{/* 
                     <Route path='/about'
-                            component={About} />
+                            component={About} /> */}
 
                     
-                    <Route path='/cart'
-                            component={Cart} />
+                    <AuthRoute path='/about'
+                                authenticated = {true}
+                               component={About} />
+
+                    
+                    <Route path='/counter'
+                            component={ReduxCounter} />
+
+                
+                    <Route path='/products'
+                            component={ProductList} />
+
+                <Route path='/func-counter'
+                        component={FuncCounter} />
+
+                    
+                    <AuthRoute path='/cart'
+                               authenticated = {true}
+                                component={Cart} />
+
+                    <Route path='/login'
+                            component={Login} />
 
                     
                     <Route path='/test'
@@ -97,6 +126,8 @@ class App extends React.Component {
 
                         <Redirect path="/goto-cart"
                                   to="/cart" />
+
+                        
 
                         <Route path='*'
                             component={NotFound} />
