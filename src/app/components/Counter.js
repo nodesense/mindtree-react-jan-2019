@@ -2,6 +2,15 @@
 
 import React, { Component } from 'react';
  
+ 
+function funcSetState(state, props) {
+    console.log('funcSetState called', state)
+    // return new state
+    return {
+        counter: state.counter - 2
+    }
+}
+
 class Counter extends Component {
     // called only once per instance
     constructor(props) {
@@ -67,6 +76,13 @@ class Counter extends Component {
 
     // Render twice, bad
     incrementBy2 = () => {
+        // this.setState({
+        //     counter: this.state.counter + 2
+        // })
+        // this.setState({
+        //     counter: this.state.counter + 2
+        // })
+
          this.setState({
              counter: this.state.counter + 2
          }, () => {
@@ -78,17 +94,17 @@ class Counter extends Component {
 
     decrementBy2 = () => {
          // Good practice to keep outside class,
-        
-         function funcSetState(state, props) {
-             console.log('funcSetState called', state)
-             // return new state
-             return {
-                 counter: state.counter - 2
-             }
-         }
+       
+         this.setState(funcSetState)
+         this.setState(funcSetState)
+   }
 
-         this.setState(funcSetState)
-         this.setState(funcSetState)
+   componentDidMount() {
+    console.log('current para value', this.para.textContent);
+    this.para.textContent = 'updated counter text para';
+     this.spanElement.textContent = 'updated span content';
+
+     //throw new Error('Counter crash');
    }
 
     render() {
@@ -100,6 +116,12 @@ class Counter extends Component {
         return (
             <div>
                 <h2>Counter</h2>
+                <p ref={ elem => this.para = elem } >
+                        My Counter Text
+                </p>
+
+                <span ref={ elem => this.spanElement = elem }> My Span Text </span>
+            
                 <p>Start Value {startValue}</p>
 
                 <p>Counter is {this.state.counter}</p>

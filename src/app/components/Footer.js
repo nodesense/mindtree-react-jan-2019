@@ -3,6 +3,8 @@ import React from 'react';
 import Address from './Address';
 
 import PropTypes from 'prop-types';
+import PreferenceContext from '../PreferenceContext';
+
 
 // functional component
 // local to Footer.js, private
@@ -17,12 +19,17 @@ const CountryList = ({countries}) => {
                     )
                 })
             }
+
+
         </div>
     )
 }
 
+// element, not component (component should be function or class)
+const notice = <p>Updated  timing refer here....</p>
+
 // ES6 function
-const Footer = (props) => {
+const Footer = (props, context) => {
     // deconstruct
     let {year, company, 
         address, countries } = props;
@@ -30,7 +37,7 @@ const Footer = (props) => {
     return (
         <div>
             <hr />
-            <p>Copyrights @{year}, {company}</p>
+            <p id="copyrights">Copyrights @{year}, {company}</p>
             <Address address={address} />
             <CountryList countries={countries} />
             {
@@ -39,6 +46,14 @@ const Footer = (props) => {
             {
                 false && <span>Not Shown</span>
             }
+
+            {/* children is keyword, represent content child */}
+            {props.children}
+            {notice}
+
+            <p> Context Theme {context.theme}</p>
+
+            <p> Context Lang {context.lang}</p>
         </div>
     )
 }
@@ -59,5 +74,7 @@ Footer.propTypes = {
 Footer.defaultProps = {
     company: 'Product App'
 }
+
+Footer.contextType = PreferenceContext;
 
 export default Footer;

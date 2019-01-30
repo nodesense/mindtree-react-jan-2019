@@ -2,17 +2,24 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+import PreferenceContext from '../../PreferenceContext';
 //TODO: PropTypes
 
 // TODO: PureComponent
 export default class CartSummary extends PureComponent {
-    constructor(props) {
-        super(props);
+
+    //es.next
+    static contextType = PreferenceContext
+
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             discount: 0,
             grandTotal: 0
         }
+
+        console.log('cartsummary cons context', context);
     }
  
     //TODO: componentWillMount
@@ -38,6 +45,8 @@ export default class CartSummary extends PureComponent {
 
     // }
 
+    // whenever parent render called create/update cycle
+    // whenever this.setState called create/update cycle
     static getDerivedStateFromProps(props, state) {
         console.log('getDerivedStateFromProps called');
         console.log('props', props);
@@ -53,11 +62,7 @@ export default class CartSummary extends PureComponent {
 
         let grandTotal = props.amount - (props.amount * discount / 100);
 
-        // this.setState({
-        //     discount, 
-        //     grandTotal
-        // })
-
+        // return new state
         return {
             discount, 
             grandTotal
@@ -102,7 +107,9 @@ export default class CartSummary extends PureComponent {
             <p> Discount: {this.state.discount} %</p>
             <p> Grand Total: {this.state.grandTotal} </p>
 
-            <button onClick={this.check}>Check</button>
+            <p> Context Theme {this.context.theme}</p>
+
+            <p> Context Lang {this.context.lang}</p>
             </div>
         )
     }

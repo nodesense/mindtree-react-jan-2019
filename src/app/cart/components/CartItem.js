@@ -12,13 +12,25 @@ export default class CartItem extends PureComponent {
 
         //TODO: assing from props
         this.state = {
-            qty: 0
+            qty: props.item.qty
         }
     }
 
     //TODO: Ref
     //TODO: componentWillMount
     //TODO: state from props, qty
+
+    onChangeQty = (e) => {
+        console.log('event ', e);
+        // target is real dom, input element
+        console.log('value ', e.target.value)
+
+        this.setState({
+            qty: parseInt(e.target.value) || ''
+        })
+
+    }
+
    
     render() {
         let {item} = this.props;
@@ -31,9 +43,9 @@ export default class CartItem extends PureComponent {
                 <td>{item.price}</td>
                 <td>
                      <input 
-                            value={item.qty}
+                            value={this.state.qty}
                             type="number"
-                            onChange = { () => {} }
+                            onChange = {this.onChangeQty}
                      />
                 </td>
                 <td>{item.price * item.qty}</td>
