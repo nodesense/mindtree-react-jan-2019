@@ -11,10 +11,10 @@ import { bindActionCreators } from 'redux';
 // who call? container will call, pass state as arg
 // when? very first when component created
 // when? whenever dispatch (subscribe)
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         // propName: value from state
-        counter: state.counter
+        counter: state.counter,
     }
 }
 
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 // let dispatch = store.dispatch
 // who call this? container
 // when? very first when component created
-const mapDispatchToProps = (dispatch, getState) => {
+export const mapDispatchToProps = (dispatch, getState) => {
     return {
         increment: function() {
             const action = actions.increment(1);
