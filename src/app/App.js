@@ -6,7 +6,10 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import ErrorBoundary from './components/ErrorBoundary';
 
-import Cart from './cart/components/Cart';
+import Loadable from 'react-loadable';
+
+
+// import Cart from './cart/components/Cart';
 
 import PreferenceContext from './PreferenceContext';
 
@@ -15,7 +18,7 @@ import {BrowserRouter as Router,
         Redirect,
         Switch} from 'react-router-dom';
 
-import Contact from './components/Contact';
+// import Contact from './components/Contact';
 import About from './components/About';
 import NotFound from './components/NotFound';
 
@@ -27,6 +30,25 @@ import AuthRoute from './components/AuthRoute';
 import ReduxCounter from './components/ReduxCounter';
 import FuncCounter from './containers/FuncCounter';
 import ProductList from './containers/ProductList';
+
+const Loading = ()=>(
+    <div>
+        <h2>Loading Module..</h2>
+    </div>
+);
+
+const LazyLoadableCart = Loadable({
+    // webpack, look into this, create separate bundle for cart code (Cart, CartList, Sumary, ITem), chunk...
+  loader: () => import('./cart/components/Cart'),
+  loading: Loading,
+});
+
+
+const LazyLoadableContact = Loadable({
+    // webpack, look into this, create separate bundle for cart code (Cart, CartList, Sumary, ITem), chunk...
+  loader: () => import('./components/Contact'),
+  loading: Loading,
+});
 
 class App extends React.Component {
     constructor(props) {
@@ -81,7 +103,7 @@ class App extends React.Component {
                             )} />
 
                     <Route path="/contact/:country" 
-                          component={Contact} />
+                          component={LazyLoadableContact} />
 {/* 
                     <Route path='/about'
                             component={About} /> */}
@@ -103,9 +125,9 @@ class App extends React.Component {
                         component={FuncCounter} />
 
                     
-                    <AuthRoute path='/cart'
+             <AuthRoute path='/cart'
                                authenticated = {true}
-                                component={Cart} />
+                                component={LazyLoadableCart} />  
 
                     <Route path='/login'
                             component={Login} />
