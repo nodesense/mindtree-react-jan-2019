@@ -20,6 +20,8 @@ function FuncCounter(props) {
                 <button onClick={props.actions.reset}>Reset bind Action</button>
 
 
+                <button onClick={() => props.actions.addToCartAndRedirect({id: 1}, props.history)}>Add to Cart</button>
+
             </div>
         );
     }

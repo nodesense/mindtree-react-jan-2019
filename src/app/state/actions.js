@@ -59,3 +59,12 @@ export function fetchProducts() {
         })
     }
 }
+
+export function addToCartAndRedirect(item, history) {
+    return function asyncFunc() {
+        console.log('thunk called async function')
+        // ...
+        //.. 
+        history.push('/products');
+    }
+}

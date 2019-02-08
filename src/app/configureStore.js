@@ -8,6 +8,7 @@ import counterReducer from './state/reducers/counterReducer';
 import productReducer from './state/reducers/productReducer';
 
 import thunk from 'redux-thunk';
+import brandReducer from './state/reducers/brandReducer';
 
 
 // (store)
@@ -41,7 +42,8 @@ function cacheMiddleware(store) {
 const configureStore = () => {
     const rootReducer = combineReducers({
         counter: counterReducer,
-        product: productReducer
+        product: productReducer,
+        brand: brandReducer
     })
 
     const counterFromLocalStorage = parseInt(window.localStorage.getItem("counter")) || 0;
