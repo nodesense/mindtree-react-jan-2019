@@ -2,7 +2,7 @@
 import * as ActionTypes from "../action-types";
 
 const INITIAL_STATE = {
-    //for products list
+    //for brands list
     loading: false,    
     brands: []
 }

@@ -1,25 +1,22 @@
-// container/ProductList.js
+// container/BrandList.js
 import {connect} from 'react-redux';
 
-import ProductList from '../components/ProductList';
+import BrandList from '../components/BrandList';
 import * as actions from '../state/actions';
 import { bindActionCreators } from 'redux';
  
 const mapStateToProps = (state) => {
     return {
-        loading: state.product.loading, 
-        products: state.product.products,
+        loading: state.brand.loading, 
+        brands: state.brand.brands,
     }
 }
  
 const mapDispatchToProps = (dispatch, getState) => {
     return {
-        fetchProductsData: function() {
-            const actionFunc = actions.fetchProducts();
-            dispatch(actionFunc);
-        }
+         actions: bindActionCreators(actions, dispatch)
     }
 }
 
 export default connect(mapStateToProps, 
-                        mapDispatchToProps) (ProductList);
+                        mapDispatchToProps) (BrandList);

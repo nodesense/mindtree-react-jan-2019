@@ -1,6 +1,9 @@
 // actions.js
 
 import * as ActionTypes from './action-types';
+
+import * as api from './api';
+
 // action creator functions/helpers
 // create action object
 
@@ -66,5 +69,43 @@ export function addToCartAndRedirect(item, history) {
         // ...
         //.. 
         history.push('/products');
+    }
+}
+
+
+export const initBrands = (brands) => ({
+    type: ActionTypes.INIT_BRANDS,
+    payload: {brands}
+})
+
+export const loadingBrands = (loading) => ({
+    type: ActionTypes.LOADING_BRANDS,
+    payload: {loading}
+})
+
+export function fetchBrands() {
+    return function asyncCode(dispatch, getState) {
+        console.log('called by thunk')
+        dispatch(loadingBrands(true));
+
+        api.getBrands()
+           .then (brands => {
+            dispatch(initBrands(brands));
+            dispatch(loadingBrands(false));
+           });
+    }
+}
+
+
+export function updateBrand(id, name) {
+    return async function asyncCode(dispatch, getState) {
+        console.log('called by thunk')
+
+        await api.clearCache();
+         
+        const result = await api.updateBrand(id, name);
+        console.log('brand saved successfully');
+
+        await dispatch(fetchBrands());
     }
 }

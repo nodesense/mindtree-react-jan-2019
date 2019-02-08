@@ -30,6 +30,8 @@ import AuthRoute from './components/AuthRoute';
 import ReduxCounter from './components/ReduxCounter';
 import FuncCounter from './containers/FuncCounter';
 import ProductList from './containers/ProductList';
+import GraphQLExample from './components/GraphQLExample';
+import BrandList from './containers/BrandList';
 
 const Loading = ()=>(
     <div>
@@ -121,6 +123,9 @@ class App extends React.Component {
                     <Route path='/products'
                             component={ProductList} />
 
+                    <Route path='/brands'
+                            component={BrandList} />
+
                 <Route path='/func-counter'
                         component={FuncCounter} />
 
@@ -148,6 +153,9 @@ class App extends React.Component {
 
                         <Redirect path="/goto-cart"
                                   to="/cart" />
+
+                        <Route path="/graphql-example"   
+                                component={GraphQLExample} />
 
                         
 

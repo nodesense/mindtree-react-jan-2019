@@ -31,6 +31,13 @@ function Header(props) {
                  Products
             </NavLink>
 
+
+            <NavLink to="/brands"
+                className="button"
+                activeClassName="success">
+                 Brands
+            </NavLink>
+
             <NavLink to="/cart"
                 className="button"
                 activeClassName="success">
@@ -85,6 +92,15 @@ function Header(props) {
                 activeClassName="success">
                 Func Counter
             </NavLink>
+
+            
+
+            <NavLink to="/graphql-example"
+                className="button"
+                activeClassName="success">
+                 GraphQL Example
+            </NavLink>
+
 
             <NavLink to="/login"
                 className="button"
